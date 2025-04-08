@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="img/logo.png" alt="PetShop Logo" id="logo-placeholder">
+                <h1>PetShop Manager</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="pages/clientes.html"><i class="fas fa-user"></i> Clientes</a></li>
+                    <li><a href="pages/pets.html"><i class="fas fa-paw"></i> Pets</a></li>
+                    <li><a href="pages/servicos.html"><i class="fas fa-concierge-bell"></i> Serviços</a></li>
+                    <li><a href="pages/agendamentos.html"><i class="fas fa-calendar-alt"></i> Agendamentos</a></li>
+                    <li><a href="pages/produtos.html"><i class="fas fa-shopping-cart"></i> Produtos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="dashboard">
+                <h2>Dashboard</h2>
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Clientes</h3>
+                            <p id="total-clientes">0</p>
+                        </div>
+                        <a href="pages/clientes.html" class="card-link">Ver todos</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Pets</h3>
+                            <p id="total-pets">0</p>
+                        </div>
+                        <a href="pages/pets.html" class="card-link">Ver todos</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Agendamentos Hoje</h3>
+                            <p id="agendamentos-hoje">0</p>
+                        </div>
+                        <a href="pages/agendamentos.html" class="card-link">Ver todos</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>Faturamento Mensal</h3>
+                            <p id="faturamento-mensal">R$ 0,00</p>
+                        </div>
+                        <a href="#" class="card-link">Detalhes</a>
+                    </div>
+                </div>
+
+                <div class="dashboard-sections">
+                    <div class="section">
+                        <h3>Agendamentos Recentes</h3>
+                        <div class="table-container">
+                            <table id="tabela-agendamentos-recentes">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Cliente</th>
+                                        <th>Pet</th>
+                                        <th>Serviço</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="empty-table">Nenhum agendamento recente</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="pages/agendamentos.html" class="view-all">Ver todos os agendamentos</a>
+                    </div>
+
+                    <div class="section">
+                        <h3>Ações Rápidas</h3>
+                        <div class="quick-actions">
+                            <a href="pages/clientes.html?action=new" class="action-btn">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Novo Cliente</span>
+                            </a>
+                            <a href="pages/pets.html?action=new" class="action-btn">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Novo Pet</span>
+                            </a>
+                            <a href="pages/agendamentos.html?action=new" class="action-btn">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Novo Agendamento</span>
+                            </a>
+                            <a href="pages/produtos.html?action=new" class="action-btn">
+                                <i class="fas fa-cart-plus"></i>
+                                <span>Novo Produto</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 PetShop Manager. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

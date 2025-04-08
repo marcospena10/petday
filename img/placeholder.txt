@@ -1,0 +1,7 @@
+Esta pasta contém imagens para o sistema PetShop Manager.
+
+Você pode adicionar aqui:
+- Logo da petshop
+- Ícones personalizados
+- Imagens de produtos
+- Outras imagens necessárias para o sistema

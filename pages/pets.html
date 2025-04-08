@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Pets - PetShop Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="../img/logo.png" alt="PetShop Logo" id="logo-placeholder">
+                <h1>PetShop Manager</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="clientes.html"><i class="fas fa-user"></i> Clientes</a></li>
+                    <li><a href="pets.html" class="active"><i class="fas fa-paw"></i> Pets</a></li>
+                    <li><a href="servicos.html"><i class="fas fa-concierge-bell"></i> Serviços</a></li>
+                    <li><a href="agendamentos.html"><i class="fas fa-calendar-alt"></i> Agendamentos</a></li>
+                    <li><a href="produtos.html"><i class="fas fa-shopping-cart"></i> Produtos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-header">
+                <h2>Gerenciar Pets</h2>
+                <button id="btn-novo-pet" class="btn-primary">
+                    <i class="fas fa-plus"></i> Novo Pet
+                </button>
+            </section>
+
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="busca-pet" placeholder="Buscar pet por nome, espécie ou dono...">
+                    <button id="btn-buscar-pet">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <div class="table-container">
+                    <table id="tabela-pets">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Espécie</th>
+                                <th>Raça</th>
+                                <th>Dono</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="empty-table">Nenhum pet cadastrado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Modal para adicionar/editar pet -->
+            <div id="modal-pet" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-pet-titulo">Novo Pet</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-pet">
+                            <input type="hidden" id="pet-id">
+                            <div class="form-group">
+                                <label for="pet-nome">Nome*</label>
+                                <input type="text" id="pet-nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pet-especie">Espécie*</label>
+                                <select id="pet-especie" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Cachorro">Cachorro</option>
+                                    <option value="Gato">Gato</option>
+                                    <option value="Ave">Ave</option>
+                                    <option value="Roedor">Roedor</option>
+                                    <option value="Réptil">Réptil</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pet-raca">Raça</label>
+                                <input type="text" id="pet-raca">
+                            </div>
+                            <div class="form-group">
+                                <label for="pet-idade">Idade</label>
+                                <input type="number" id="pet-idade" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="pet-peso">Peso (kg)</label>
+                                <input type="number" id="pet-peso" step="0.1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="pet-dono">Dono*</label>
+                                <select id="pet-dono" required>
+                                    <option value="">Selecione um cliente</option>
+                                    <!-- Opções serão preenchidas via JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pet-observacoes">Observações</label>
+                                <textarea id="pet-observacoes"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="btn-cancelar-pet" class="btn-secondary">Cancelar</button>
+                                <button type="submit" class="btn-primary">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para confirmar exclusão -->
+            <div id="modal-confirmar-exclusao" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Confirmar Exclusão</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja excluir este pet? Esta ação não pode ser desfeita.</p>
+                        <div class="form-actions">
+                            <button type="button" id="btn-cancelar-exclusao" class="btn-secondary">Cancelar</button>
+                            <button type="button" id="btn-confirmar-exclusao" class="btn-danger">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 PetShop Manager. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/pets.js"></script>
+</body>
+</html>

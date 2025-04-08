@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Produtos - PetShop Manager</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="../img/logo.png" alt="PetShop Logo" id="logo-placeholder">
+                <h1>PetShop Manager</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="clientes.html"><i class="fas fa-user"></i> Clientes</a></li>
+                    <li><a href="pets.html"><i class="fas fa-paw"></i> Pets</a></li>
+                    <li><a href="servicos.html"><i class="fas fa-concierge-bell"></i> Serviços</a></li>
+                    <li><a href="agendamentos.html"><i class="fas fa-calendar-alt"></i> Agendamentos</a></li>
+                    <li><a href="produtos.html" class="active"><i class="fas fa-shopping-cart"></i> Produtos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="content-header">
+                <h2>Gerenciar Produtos</h2>
+                <button id="btn-novo-produto" class="btn-primary">
+                    <i class="fas fa-plus"></i> Novo Produto
+                </button>
+            </section>
+
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="busca-produto" placeholder="Buscar produto por nome, categoria ou código...">
+                    <button id="btn-buscar-produto">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="filter-section">
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label for="filtro-categoria">Categoria:</label>
+                        <select id="filtro-categoria">
+                            <option value="">Todas</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Higiene">Higiene</option>
+                            <option value="Acessórios">Acessórios</option>
+                            <option value="Medicamentos">Medicamentos</option>
+                            <option value="Brinquedos">Brinquedos</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filtro-estoque">Estoque:</label>
+                        <select id="filtro-estoque">
+                            <option value="">Todos</option>
+                            <option value="baixo">Estoque Baixo</option>
+                            <option value="disponivel">Disponível</option>
+                            <option value="esgotado">Esgotado</option>
+                        </select>
+                    </div>
+                    <button id="btn-filtrar" class="btn-secondary">
+                        <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                    <button id="btn-limpar-filtro" class="btn-outline">
+                        <i class="fas fa-times"></i> Limpar
+                    </button>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <div class="table-container">
+                    <table id="tabela-produtos">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Estoque</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" class="empty-table">Nenhum produto cadastrado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Modal para adicionar/editar produto -->
+            <div id="modal-produto" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-produto-titulo">Novo Produto</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-produto">
+                            <input type="hidden" id="produto-id">
+                            <div class="form-group">
+                                <label for="produto-codigo">Código*</label>
+                                <input type="text" id="produto-codigo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="produto-nome">Nome*</label>
+                                <input type="text" id="produto-nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="produto-descricao">Descrição</label>
+                                <textarea id="produto-descricao"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="produto-preco">Preço (R$)*</label>
+                                    <input type="number" id="produto-preco" step="0.01" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="produto-estoque">Estoque*</label>
+                                    <input type="number" id="produto-estoque" min="0" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="produto-categoria">Categoria*</label>
+                                <select id="produto-categoria" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Alimentação">Alimentação</option>
+                                    <option value="Higiene">Higiene</option>
+                                    <option value="Acessórios">Acessórios</option>
+                                    <option value="Medicamentos">Medicamentos</option>
+                                    <option value="Brinquedos">Brinquedos</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="produto-fornecedor">Fornecedor</label>
+                                <input type="text" id="produto-fornecedor">
+                            </div>
+                            <div class="form-group">
+                                <label for="produto-estoque-minimo">Estoque Mínimo</label>
+                                <input type="number" id="produto-estoque-minimo" min="0">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="btn-cancelar-produto" class="btn-secondary">Cancelar</button>
+                                <button type="submit" class="btn-primary">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para confirmar exclusão -->
+            <div id="modal-confirmar-exclusao" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Confirmar Exclusão</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja excluir este produto? Esta ação não pode ser desfeita.</p>
+                        <div class="form-actions">
+                            <button type="button" id="btn-cancelar-exclusao" class="btn-secondary">Cancelar</button>
+                            <button type="button" id="btn-confirmar-exclusao" class="btn-danger">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para ajustar estoque -->
+            <div id="modal-ajustar-estoque" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Ajustar Estoque</h3>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-ajustar-estoque">
+                            <input type="hidden" id="estoque-produto-id">
+                            <div class="form-group">
+                                <label for="estoque-produto-nome">Produto</label>
+                                <input type="text" id="estoque-produto-nome" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="estoque-atual">Estoque Atual</label>
+                                <input type="number" id="estoque-atual" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="estoque-operacao">Operação</label>
+                                <select id="estoque-operacao" required>
+                                    <option value="adicionar">Adicionar</option>
+                                    <option value="remover">Remover</option>
+                                    <option value="definir">Definir Valor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="estoque-quantidade">Quantidade*</label>
+                                <input type="number" id="estoque-quantidade" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="estoque-motivo">Motivo</label>
+                                <select id="estoque-motivo">
+                                    <option value="">Selecione</option>
+                                    <option value="Compra">Compra</option>
+                                    <option value="Venda">Venda</option>
+                                    <option value="Ajuste">Ajuste de Inventário</option>
+                                    <option value="Devolução">Devolução</option>
+                                    <option value="Perda">Perda/Dano</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="estoque-observacao">Observação</label>
+                                <textarea id="estoque-observacao"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="btn-cancelar-ajuste" class="btn-secondary">Cancelar</button>
+                                <button type="submit" class="btn-primary">Confirmar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 PetShop Manager. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/produtos.js"></script>
+</body>
+</html>
